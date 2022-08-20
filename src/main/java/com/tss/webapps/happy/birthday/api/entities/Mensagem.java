@@ -16,7 +16,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.tss.webapps.happy.birthday.api.dto.MensagemDto;
 
 @Entity(name = "td_mensagens")
-public class Mensagem {
+public class Mensagem implements Comparable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -110,6 +110,19 @@ public class Mensagem {
 	}
 
 	public Mensagem() {}
+
+	@Override
+	public int compareTo(Object o) {
+		if (this.createdAt.isBefore(LocalDateTime.now())) {
+			return -1;
+		}
+
+		if (!this.createdAt.isBefore(LocalDateTime.now())) {
+			return 1;
+		}
+
+		return 0;
+	}
 
 
 }
