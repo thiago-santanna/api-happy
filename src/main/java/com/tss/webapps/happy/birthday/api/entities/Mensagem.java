@@ -1,6 +1,6 @@
 package com.tss.webapps.happy.birthday.api.entities;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ import com.tss.webapps.happy.birthday.api.dto.MensagemDto;
 public class Mensagem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;	
+	private Long id;
 
 	@Column(length = 100, nullable = false)
 	private String nomeOrEmail;
@@ -27,7 +27,7 @@ public class Mensagem {
 	private String texto;
 
 	@CreationTimestamp
-	private LocalDate createdAt = LocalDate.now();
+	private LocalDateTime createdAt = LocalDateTime.now();
 
 	public Long getId() {
 		return id;
@@ -37,7 +37,7 @@ public class Mensagem {
 		return nomeOrEmail;
 	}
 
-	public LocalDate getDataMensagem() {
+	public LocalDateTime getDataMensagem() {
 		return createdAt;
 	}
 
@@ -45,11 +45,11 @@ public class Mensagem {
 		return texto;
 	}
 
-	public LocalDate getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(LocalDate createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -89,19 +89,17 @@ public class Mensagem {
 
 	@Override
 	public String toString() {
-		return "Mensagem [id=" + id + ", nomeOrEmail=" + nomeOrEmail + ", dataMensagem=" + createdAt + ", texto="
-				+ texto + "]";
+		return "Mensagem [id=" + id + ", nomeOrEmail=" + nomeOrEmail + ", dataMensagem=" + createdAt
+				+ ", texto=" + texto + "]";
 	}
-	
+
 	public MensagemDto toMensagemDto() {
 		return new MensagemDto(this.id, this.nomeOrEmail, this.createdAt, this.texto);
 	}
-	
-	public static List<MensagemDto> mensagensDtoFrom(List<Mensagem> mensagens){
-		List<MensagemDto> mensagensDto = mensagens
-				.stream()
-				.map(msg -> msg.toMensagemDto())
-				.collect(Collectors.toList());
+
+	public static List<MensagemDto> mensagensDtoFrom(List<Mensagem> mensagens) {
+		List<MensagemDto> mensagensDto =
+				mensagens.stream().map(msg -> msg.toMensagemDto()).collect(Collectors.toList());
 		return mensagensDto;
 	}
 
@@ -110,8 +108,8 @@ public class Mensagem {
 		this.nomeOrEmail = nomeOrEmail;
 		this.texto = texto;
 	}
-	
+
 	public Mensagem() {}
 
-	
+
 }

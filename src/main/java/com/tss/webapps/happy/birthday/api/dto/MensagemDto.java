@@ -1,12 +1,11 @@
 package com.tss.webapps.happy.birthday.api.dto;
 
-import java.time.LocalDate;
-import java.util.UUID;
+import java.time.LocalDateTime;
 
 public class MensagemDto {
 	private Long id;
 	private String nomeOrEmail;
-	private LocalDate createdAt;
+	private LocalDateTime createdAt;
 	private String texto;
 
 	public Long getId() {
@@ -17,7 +16,7 @@ public class MensagemDto {
 		return nomeOrEmail;
 	}
 
-	public LocalDate getDataMensagem() {
+	public LocalDateTime getDataMensagem() {
 		return createdAt;
 	}
 
@@ -25,7 +24,7 @@ public class MensagemDto {
 		return texto;
 	}
 
-	public MensagemDto(Long id, String nomeOrEmail, LocalDate dataMensagem, String texto) {
+	public MensagemDto(Long id, String nomeOrEmail, LocalDateTime dataMensagem, String texto) {
 		this.id = id;
 		this.nomeOrEmail = nomeOrEmail;
 		this.createdAt = dataMensagem;
